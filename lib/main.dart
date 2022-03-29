@@ -24,6 +24,25 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: ListTile(
+          title: IntrinsicWidth(
+            child: Row(
+              children: [
+                Text("PRODUCT NAME"),
+                Expanded(
+                  child: TextField(),
+                ),
+                Text('PRICE'),
+                Expanded(
+                  child: TextField(),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

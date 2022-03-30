@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
-import 'package:restaurant_menu_back_panel/widgets/product_editor_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/product_editor_widget.dart';
 
 class SectionEditorWidget extends StatelessWidget {
   final SectionModel section;

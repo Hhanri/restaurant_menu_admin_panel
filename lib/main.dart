@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
+import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/product_editor_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/section_editor_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,23 +29,39 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ProductModel test = const ProductModel(productName: "haha", price: "12");
+    ProductModel test1 = const ProductModel(productName: "haha", price: "12");
+    ProductModel test2 = const ProductModel(productName: "hehe", price: "13");
+    ProductModel test3 = const ProductModel(productName: "hihi", price: "142");
+
+    SectionModel section1 = SectionModel(
+        sectionName: "Section1",
+        products: [test1,test2,test3],
+        cover: "no cover"
+    );
+
+    SectionModel section2 = SectionModel(
+        sectionName: "Section2",
+        products: [test2,test3,test1],
+        cover: "yes cover"
+    );
+
+    List<SectionModel> sections = [section1,section2];
 
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
-            child: ProductEditorWidget(
-              product: test,
-              onChange: (newProduct) {
-                test = newProduct;
-                print(test);
-              },
-            )
-          )
+          ...List.generate(sections.length, (index) {
+            return SectionEditorWidget(
+              section: sections[index],
+              onChange: (SectionModel newSection) {
+                sections[index] = newSection;
+                print(sections);
+              }
+            );
+          })
         ],
-      ),
+      )
     );
   }
 }

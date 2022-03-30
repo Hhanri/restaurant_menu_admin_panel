@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
-import 'package:restaurant_menu_back_panel/resources/app_constants.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
 
 class ProductEditorWidget extends StatelessWidget {

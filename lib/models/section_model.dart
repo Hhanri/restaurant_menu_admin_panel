@@ -12,6 +12,14 @@ class SectionModel extends Equatable{
     required this.cover
   });
 
+  SectionModel copyWith({String? sectionName, List<ProductModel>? products, String? cover}) {
+    return SectionModel(
+      sectionName: sectionName ?? this.sectionName,
+      products: products ?? this.products,
+      cover: cover ?? this.cover
+    );
+  }
+
   static Future<SectionModel> fromJson({required Map<String, dynamic> data, required bool fromFirebase}) async {
     return SectionModel(
       sectionName: data["sectionName"],

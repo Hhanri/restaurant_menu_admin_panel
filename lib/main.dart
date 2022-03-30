@@ -1,11 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_menu_back_panel/models/product_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
-import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/product_editor_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/restaurant_menu_widget.dart';
-import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_widget.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyB8ia9ijWnLcrjZpIrw_uiWgOD2mr_n2I4",
+          appId: "1:1091647534392:web:95eeb77b08d0a03e583dcd",
+          messagingSenderId: "1091647534392",
+          projectId: "generic-restaurant-menu",
+          storageBucket: "generic-restaurant-menu.appspot.com",
+          authDomain: "generic-restaurant-menu.firebaseapp.com"
+      )
+  );
   runApp(const MyApp());
 }
 
@@ -29,31 +40,34 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    ProductModel test1 = const ProductModel(productName: "haha", price: "12");
-    ProductModel test2 = const ProductModel(productName: "hehe", price: "13");
-    ProductModel test3 = const ProductModel(productName: "hihi", price: "142");
-
-    SectionModel section1 = SectionModel(
-        sectionName: "Section1",
-        products: [test1,test2,test3],
-        cover: "no cover"
-    );
-
-    SectionModel section2 = SectionModel(
-        sectionName: "Section2",
-        products: [test2,test3,test1],
-        cover: "yes cover"
-    );
-
-    List<SectionModel> sections = [section1,section2];
-
-    return RestaurantMenuWidget(
-      sections: sections,
-      onChange: (List<SectionModel> newSections) {
-        sections = newSections;
-        print(sections);
-      },
+    return BlocProvider(
+      create: (context) => RestaurantMenuBloc()..add(LoadFromFirebaseEvent()),
+      child: Scaffold(
+        body: BlocBuilder<RestaurantMenuBloc, RestaurantMenuState>(
+          builder: (context, state) {
+            if (state is RestaurantMenuLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is RestaurantMenuLoadedState) {
+              print(state.sections);
+              List<SectionModel> _sections = state.sections;
+              return RestaurantMenuWidget(
+                onUpdate: () {
+                  context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent(sections: _sections));
+                },
+                sections: _sections,
+                onChange: (List<SectionModel> newSections) {
+                  _sections = newSections;
+                  print(_sections);
+                },
+              );
+            }
+            return const Center(
+              child: Icon(Icons.error),
+            );
+          },
+        )
+      ),
     );
   }
 }

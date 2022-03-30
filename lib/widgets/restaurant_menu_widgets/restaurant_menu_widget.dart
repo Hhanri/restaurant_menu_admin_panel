@@ -5,31 +5,42 @@ import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/secti
 class RestaurantMenuWidget extends StatelessWidget {
   final List<SectionModel> sections;
   final Function(List<SectionModel>) onChange;
+  final VoidCallback onUpdate;
   const RestaurantMenuWidget({
     Key? key,
     required this.sections,
-    required this.onChange
+    required this.onChange,
+    required this.onUpdate
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<SectionModel> _sections = sections;
-    return Scaffold(
-      body: ListView.separated(
-        itemCount: _sections.length,
-        itemBuilder: (BuildContext context, int index) {
-          return SectionEditorWidget(
-            section: _sections[index],
-            onChange: (SectionModel newSection) {
-              _sections[index] = newSection;
-              onChange(_sections);
-            }
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return buildDivider();
-        },
-      )
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.separated(
+            itemCount: _sections.length,
+            shrinkWrap: false,
+            itemBuilder: (BuildContext context, int index) {
+              return SectionEditorWidget(
+                section: _sections[index],
+                onChange: (SectionModel newSection) {
+                  _sections[index] = newSection;
+                  onChange(_sections);
+                }
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return buildDivider();
+            },
+          ),
+        ),
+        ElevatedButton(
+          onPressed: onUpdate,
+          child: Text("UPDATE")
+        )
+      ],
     );
   }
 

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart' show Equatable;
-import 'package:generic_restaurant_app/models/product_model.dart' show ProductModel;
-import 'package:generic_restaurant_app/services/firebase_services.dart' show FirebaseServices;
+import 'package:restaurant_menu_back_panel/models/product_model.dart' show ProductModel;
 
 class SectionModel extends Equatable{
   final String sectionName;
@@ -17,7 +16,7 @@ class SectionModel extends Equatable{
     return SectionModel(
       sectionName: data["sectionName"],
       products: List<ProductModel>.from(data["products"].map((jsonProduct) => ProductModel.fromJson(jsonProduct))),
-      cover: fromFirebase ? await FirebaseServices().downloadURL(data["cover"]) : data["cover"]
+      cover: data["cover"]
     );
   }
 
@@ -40,7 +39,7 @@ class SectionModel extends Equatable{
   static List<Map<String, dynamic>> listToJson(List<SectionModel> listModel) {
     return List<Map<String, dynamic>>.from(listModel.map((section) => toJson(section)));
   }
-  
+
   @override
   // TODO: implement props
   List<Object?> get props => [sectionName, products, cover];

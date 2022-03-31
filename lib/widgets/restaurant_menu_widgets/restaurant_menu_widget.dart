@@ -30,7 +30,8 @@ class RestaurantMenuWidget extends StatelessWidget {
                     onChange: (SectionModel newSection) {
                       _sections[index] = newSection;
                       onChange(_sections);
-                    }
+                    },
+                    reloadFromFirebase: onUpdate,
                   ),
                   buildDivider()
                 ],

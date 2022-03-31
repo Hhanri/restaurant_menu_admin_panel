@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/resources/app_constants.dart';
 
@@ -19,8 +21,7 @@ class FirebaseServices {
     //_firebaseFirestore.settings = const Settings(persistenceEnabled: false);
     final Map<String, dynamic> map = {AppConstants.restaurantMenu : SectionModel.listToJson(sections)};
     _firebaseFirestore.collection(AppConstants.restaurantMenu).doc(AppConstants.restaurantMenu).set(map);
-}
-
+  }
 /*
   void loadMenuToFirebase() async {
     _firebaseFirestore.settings = const Settings(persistenceEnabled: false);
@@ -35,9 +36,14 @@ class FirebaseServices {
     final data = await json.decode(response);
     _firebaseFirestore.collection(AppConstants.config).doc(AppConstants.config).set(data);
   }
-
-
  */
+  Future<void> uploadImage(XFile image) async {
+    final String path = "assets/images/${image.name}";
+    final Reference ref = _firebaseStorage.ref().child(path);
+    await ref.putData(await image.readAsBytes(), SettableMetadata(contentType: "image/jpeg"));
+  }
+
+
   Future<String> downloadURL(String imagePath) async {
     String downloadURL = await _firebaseStorage.ref(imagePath).getDownloadURL();
     return downloadURL;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
+import 'package:restaurant_menu_back_panel/services/firebase_service.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/product_editor_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_header_editor_widget.dart';
@@ -8,10 +10,12 @@ import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/secti
 class SectionEditorWidget extends StatefulWidget {
   final SectionModel section;
   final Function(SectionModel) onChange;
+  final VoidCallback reloadFromFirebase;
   const SectionEditorWidget({
     Key? key,
     required this.section,
-    required this.onChange
+    required this.onChange,
+    required this.reloadFromFirebase
   }) : super(key: key);
 
   @override
@@ -40,10 +44,15 @@ class _SectionEditorWidgetState extends State<SectionEditorWidget> {
       children: [
         SectionHeaderEditorWidget(
           section: widget.section,
-          onChange: (String newSectionName) {
+          onNameChange: (String newSectionName) {
             _sectionName = newSectionName;
             createNewSection();
-          }
+          },
+          onCoverChange: (String newCover) {
+            _cover = newCover;
+            createNewSection();
+            widget.reloadFromFirebase();
+          },
         ),
         ...List.generate(_products.length, (index) {
           return ProductEditorWidget(

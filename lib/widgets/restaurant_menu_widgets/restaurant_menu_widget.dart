@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
+import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_widget.dart';
 
 class RestaurantMenuWidget extends StatelessWidget {
@@ -36,9 +37,9 @@ class RestaurantMenuWidget extends StatelessWidget {
               );
             }
           ),
-          ElevatedButton(
-            onPressed: onUpdate,
-            child: Text("UPDATE")
+          ElevatedButtonWidget(
+            onTap: onUpdate,
+            text: "UPDATE"
           )
         ],
       ),

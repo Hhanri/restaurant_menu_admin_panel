@@ -33,6 +33,7 @@ class SectionEditorWidget extends StatelessWidget {
         ),
         ...List.generate(section.products.length, (index) {
           return ProductEditorWidget(
+            key: UniqueKey(),
             sectionIndex: sectionIndex,
             productIndex: index,
             product: section.products[index],

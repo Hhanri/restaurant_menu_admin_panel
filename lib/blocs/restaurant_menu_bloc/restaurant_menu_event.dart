@@ -33,6 +33,19 @@ class AddProductEvent extends RestaurantMenuEvent {
   List<Object> get props => [sectionIndex];
 }
 
+class RemoveProductEvent extends RestaurantMenuEvent {
+  final int sectionIndex;
+  final int productIndex;
+
+  RemoveProductEvent({
+    required this.sectionIndex,
+    required this.productIndex
+  });
+
+  @override
+  List<Object> get props => [sectionIndex];
+}
+
 class EditSectionName extends RestaurantMenuEvent {
   final String newName;
   final int sectionIndex;

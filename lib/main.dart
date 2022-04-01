@@ -51,7 +51,6 @@ class MyHomePage extends StatelessWidget {
             }
             if (state is RestaurantMenuLoadedState) {
               List<SectionModel> _sections = BlocProvider.of<RestaurantMenuBloc>(context).sections;
-              print(_sections);
               return RestaurantMenuWidget(
                 onUpdate: () {
                   context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent());

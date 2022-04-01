@@ -31,7 +31,12 @@ class RestaurantMenuBloc extends Bloc<RestaurantMenuEvent, RestaurantMenuState> 
 
     on<AddProductEvent>((event, emit) {
       sections[event.sectionIndex].products.add(const ProductModel(productName: "", price: ""));
-      //emit(RestaurantMenuLoadedState(sections: sections));
+      emit(RestaurantMenuLoadedState(sections: sections));
+    });
+
+    on<RemoveProductEvent>((event, emit) {
+      sections[event.sectionIndex].products.removeAt(event.productIndex);
+      emit(RestaurantMenuLoadedState(sections: sections));
     });
   }
 }

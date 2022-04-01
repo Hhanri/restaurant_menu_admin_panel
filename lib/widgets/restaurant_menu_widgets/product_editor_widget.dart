@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
+import 'package:restaurant_menu_back_panel/widgets/icon_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 
@@ -13,7 +14,7 @@ class ProductEditorWidget extends StatelessWidget {
     Key? key,
     required this.product,
     required this.productIndex,
-    required this.sectionIndex
+    required this.sectionIndex,
   }) : super(key: key);
 
   @override
@@ -53,6 +54,13 @@ class ProductEditorWidget extends StatelessWidget {
               },
             ),
           ),
+          const Spacer(flex: 1),
+          IconButtonWidget(
+            onPress: (){
+              BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveProductEvent(sectionIndex: sectionIndex, productIndex: productIndex));
+            },
+            icon: Icons.delete_forever
+          )
         ],
       ),
     );

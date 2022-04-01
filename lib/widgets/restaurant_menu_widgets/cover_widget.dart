@@ -68,7 +68,6 @@ class _CoverWidgetState extends State<CoverWidget> {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
-        print(image.path);
         _cover = image.path;
       });
       await FirebaseServices().uploadImage(image);

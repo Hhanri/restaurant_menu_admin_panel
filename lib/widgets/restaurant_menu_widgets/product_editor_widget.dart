@@ -35,7 +35,7 @@ class ProductEditorWidget extends StatelessWidget {
           Expanded(
             flex: 4,
             child: TextWithTextFieldWidget(
-              parameters: HexTextFieldParameters(),
+              parameters: NormalTextFieldParameters(),
               text: "name",
               value: productName,
               onChange: (value) {

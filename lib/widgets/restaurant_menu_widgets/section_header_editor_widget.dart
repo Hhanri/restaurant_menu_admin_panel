@@ -18,7 +18,6 @@ class SectionHeaderEditorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _sectionName = section.sectionName;
 
     return PaddingWidget(
       child: Row(
@@ -28,10 +27,9 @@ class SectionHeaderEditorWidget extends StatelessWidget {
             flex: 5,
             child: TextWithTextFieldWidget(
               text: "Section Title",
-              value: _sectionName,
+              value: section.sectionName,
               onChange: (value) {
-                _sectionName = value;
-                onNameChange(_sectionName);
+                onNameChange(value);
               },
             ),
           ),

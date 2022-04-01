@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 
 class ProductEditorWidget extends StatelessWidget {
   final ProductModel product;
-  final Function(ProductModel) onChange;
+  final int productIndex;
+  final int sectionIndex;
   const ProductEditorWidget({
     Key? key,
     required this.product,
-    required this.onChange
+    required this.productIndex,
+    required this.sectionIndex
   }) : super(key: key);
 
   @override
@@ -19,7 +23,7 @@ class ProductEditorWidget extends StatelessWidget {
 
     void createNewProduct() {
       final newProduct = ProductModel(productName: productName, price: productPrice);
-      onChange(newProduct);
+      BlocProvider.of<RestaurantMenuBloc>(context).add(EditProductEvent(newProduct: newProduct, sectionIndex: sectionIndex, productIndex: productIndex));
     }
 
     return PaddingWidget(

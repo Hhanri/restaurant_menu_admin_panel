@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RestaurantMenuBloc()..add(LoadFromFirebaseEvent()),
+      create: (context) => RestaurantMenuBloc(sections: [])..add(LoadFromFirebaseEvent()),
       child: Scaffold(
         body: BlocBuilder<RestaurantMenuBloc, RestaurantMenuState>(
           builder: (context, state) {
@@ -50,17 +50,13 @@ class MyHomePage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is RestaurantMenuLoadedState) {
-              print(state.sections);
-              List<SectionModel> _sections = state.sections;
+              List<SectionModel> _sections = BlocProvider.of<RestaurantMenuBloc>(context).sections;
+              print(_sections);
               return RestaurantMenuWidget(
                 onUpdate: () {
-                  context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent(sections: _sections));
+                  context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent());
                 },
                 sections: _sections,
-                onChange: (List<SectionModel> newSections) {
-                  _sections = newSections;
-                  print(_sections);
-                },
               );
             }
             return const Center(

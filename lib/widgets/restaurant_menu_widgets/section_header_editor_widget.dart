@@ -3,6 +3,7 @@ import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/services/firebase_service.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/cover_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 
 class SectionHeaderEditorWidget extends StatelessWidget {
@@ -26,6 +27,7 @@ class SectionHeaderEditorWidget extends StatelessWidget {
           Expanded(
             flex: 5,
             child: TextWithTextFieldWidget(
+              parameters: NormalTextFieldParameters(),
               text: "Section Title",
               value: section.sectionName,
               onChange: (value) {
@@ -52,7 +54,6 @@ class SectionHeaderEditorWidget extends StatelessWidget {
                   width: 160,
                 );
               },
-
             ),
           )
         ],

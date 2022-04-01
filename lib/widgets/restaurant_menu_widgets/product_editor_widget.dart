@@ -4,6 +4,7 @@ import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/icon_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 
 class ProductEditorWidget extends StatelessWidget {
@@ -34,6 +35,7 @@ class ProductEditorWidget extends StatelessWidget {
           Expanded(
             flex: 4,
             child: TextWithTextFieldWidget(
+              parameters: HexTextFieldParameters(),
               text: "name",
               value: productName,
               onChange: (value) {
@@ -46,6 +48,7 @@ class ProductEditorWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: TextWithTextFieldWidget(
+              parameters: PriceTextFieldParameters(),
               text: "price",
               value: productPrice,
               onChange: (value) {

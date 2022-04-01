@@ -11,33 +11,40 @@ class RestaurantMenuWidget extends StatelessWidget {
     required this.sections,
     required this.onUpdate
   }) : super(key: key);
-
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     List<SectionModel> _sections = sections;
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          ...List.generate(
-            _sections.length,
-            (index) {
-              return Column(
-                children: [
-                  SectionEditorWidget(
-                    sectionIndex: index,
-                    section: _sections[index],
-                    reloadFromFirebase: onUpdate,
-                  ),
-                  buildDivider()
-                ],
-              );
-            }
-          ),
-          ElevatedButtonWidget(
-            onTap: onUpdate,
-            text: "UPDATE"
-          )
-        ],
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            ...List.generate(
+              _sections.length,
+              (index) {
+                return Column(
+                  children: [
+                    SectionEditorWidget(
+                      sectionIndex: index,
+                      section: _sections[index],
+                      reloadFromFirebase: onUpdate,
+                    ),
+                    buildDivider()
+                  ],
+                );
+              }
+            ),
+            ElevatedButtonWidget(
+              onTap: () {
+                if (_formKey.currentState!.validate()) {
+                  onUpdate();
+                }
+              },
+              text: "UPDATE"
+            )
+          ],
+        ),
       ),
     );
   }

@@ -66,12 +66,12 @@ class NormalTextFieldParameters extends TextFieldParameters{
 class PriceTextFieldParameters extends TextFieldParameters{
   PriceTextFieldParameters() : super(
     validator: (String? value) {
-      if (!value!.isNumeric()) {
+      if (!value!.isPrice()) {
         return "Only digits";
       }
     },
     formatters: [
-      FilteringTextInputFormatter.digitsOnly,
+      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
     ]
   );
 }

@@ -1,12 +1,14 @@
 import 'dart:core';
 
+import 'package:restaurant_menu_back_panel/resources/regexp.dart';
+
 extension RegExpExtension on String {
 
-  bool isNumeric() {
-    return RegExp(r'^-?(([0-9]*)|(([0-9]*)\.([0-9]*)))$').hasMatch(this);
+  bool isPrice() {
+    return CustomRegExp.priceRegExp.hasMatch(this) ;
   }
   
   bool isARGB() {
-    return RegExp(r'([A-F 0-9])').hasMatch(this) && length == 8;
+    return CustomRegExp.argbRegExp.hasMatch(this);
   }
 }

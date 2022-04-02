@@ -38,13 +38,14 @@ class RestaurantMenuWidget extends StatelessWidget {
                 );
               }
             ),
-            ElevatedButtonWidget(
+            ElevatedIconButtonWidget(
               onTap: () {
                 if (_formKey.currentState!.validate()) {
                   onUpdate();
                 }
               },
-              text: "UPDATE"
+              text: "UPDATE",
+              icon: Icons.refresh
             )
           ],
         ),

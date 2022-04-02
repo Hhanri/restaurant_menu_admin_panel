@@ -4,6 +4,7 @@ import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/product_editor_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_row_buttons_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_header_editor_widget.dart';
 
 class SectionEditorWidget extends StatelessWidget {
@@ -39,10 +40,12 @@ class SectionEditorWidget extends StatelessWidget {
             product: section.products[index],
           );
         }),
-        ElevatedButtonWidget(
-          text: "ADD",
-          onTap: () {
+        SectionEditorRowButtonsWidget(
+          onAddProduct: () {
             BlocProvider.of<RestaurantMenuBloc>(context).add(AddProductEvent(sectionIndex: sectionIndex));
+          },
+          onDeleteSection: () {
+            BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveSectionEvent(sectionIndex: sectionIndex));
           },
         )
       ],

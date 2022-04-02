@@ -38,5 +38,10 @@ class RestaurantMenuBloc extends Bloc<RestaurantMenuEvent, RestaurantMenuState> 
       sections[event.sectionIndex].products.removeAt(event.productIndex);
       emit(RestaurantMenuLoadedState(sections: sections));
     });
+
+    on<RemoveSectionEvent>((event, emit) {
+      sections.removeAt(event.sectionIndex);
+      emit(RestaurantMenuLoadedState(sections: sections));
+    });
   }
 }

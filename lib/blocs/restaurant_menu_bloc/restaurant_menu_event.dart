@@ -54,4 +54,15 @@ class EditSectionName extends RestaurantMenuEvent {
     required this.newName,
     required this.sectionIndex
   });
+  @override
+  List<Object> get props => [newName, sectionIndex];
+}
+
+class RemoveSectionEvent extends RestaurantMenuEvent {
+  final int sectionIndex;
+
+  RemoveSectionEvent({required this.sectionIndex});
+
+  @override
+  List<Object> get props => [sectionIndex];
 }

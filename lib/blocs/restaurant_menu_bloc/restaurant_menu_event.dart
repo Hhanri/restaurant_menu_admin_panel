@@ -66,3 +66,6 @@ class RemoveSectionEvent extends RestaurantMenuEvent {
   @override
   List<Object> get props => [sectionIndex];
 }
+
+class AddSectionEvent extends RestaurantMenuEvent {
+}

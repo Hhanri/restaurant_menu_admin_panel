@@ -48,6 +48,12 @@ class SectionModel extends Equatable{
     return List<Map<String, dynamic>>.from(listModel.map((section) => toJson(section)));
   }
 
+  static SectionModel defaultSectionModel = SectionModel(
+    sectionName: "sectionName",
+    products: [],
+    cover: "assets/images/white-thumbnail.jpg"
+  );
+
   @override
   // TODO: implement props
   List<Object?> get props => [sectionName, products, cover];

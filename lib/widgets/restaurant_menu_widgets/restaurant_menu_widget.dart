@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_widget.dart';
@@ -45,7 +47,14 @@ class RestaurantMenuWidget extends StatelessWidget {
                 }
               },
               text: "UPDATE",
-              icon: Icons.refresh
+              icon: Icons.upload
+            ),
+            ElevatedIconButtonWidget(
+              onTap: () {
+                BlocProvider.of<RestaurantMenuBloc>(context).add(AddSectionEvent());
+              },
+              text: "ADD SECTION",
+              icon: Icons.add
             )
           ],
         ),

@@ -42,6 +42,13 @@ class RestaurantMenuWidget extends StatelessWidget {
             ),
             ElevatedIconButtonWidget(
               onTap: () {
+                BlocProvider.of<RestaurantMenuBloc>(context).add(AddSectionEvent());
+              },
+              text: "ADD SECTION",
+              icon: Icons.add
+            ),
+            ElevatedIconButtonWidget(
+              onTap: () {
                 if (_formKey.currentState!.validate()) {
                   onUpdate();
                 }
@@ -49,13 +56,6 @@ class RestaurantMenuWidget extends StatelessWidget {
               text: "UPDATE",
               icon: Icons.upload
             ),
-            ElevatedIconButtonWidget(
-              onTap: () {
-                BlocProvider.of<RestaurantMenuBloc>(context).add(AddSectionEvent());
-              },
-              text: "ADD SECTION",
-              icon: Icons.add
-            )
           ],
         ),
       ),

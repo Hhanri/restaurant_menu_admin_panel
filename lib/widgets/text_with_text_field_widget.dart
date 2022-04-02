@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_widget.dart';
 
@@ -17,23 +18,24 @@ class TextWithTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 1,
-          child: TextWidget(text: text)
-        ),
-        Expanded(
-          flex: 6,
-          child: TextFieldWidget(
-            parameters: parameters,
-            onChange: (value) {
-              onChange(value);
-            },
-            value: value
+    return PaddingWidget(
+      child: Row(
+        children: [
+          FittedBox(
+            child: TextWidget(text: text)
           ),
-        )
-      ],
+          Expanded(
+            flex: 6,
+            child: TextFieldWidget(
+              parameters: parameters,
+              onChange: (value) {
+                onChange(value);
+              },
+              value: value
+            ),
+          )
+        ],
+      ),
     );
   }
 }

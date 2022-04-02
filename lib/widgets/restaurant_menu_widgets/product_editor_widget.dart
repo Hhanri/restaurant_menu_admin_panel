@@ -29,44 +29,42 @@ class ProductEditorWidget extends StatelessWidget {
       BlocProvider.of<RestaurantMenuBloc>(context).add(EditProductEvent(newProduct: newProduct, sectionIndex: sectionIndex, productIndex: productIndex));
     }
 
-    return PaddingWidget(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 4,
-            child: TextWithTextFieldWidget(
-              parameters: NormalTextFieldParameters(),
-              text: TitleStrings.name,
-              value: productName,
-              onChange: (value) {
-                productName = value;
-                createNewProduct();
-              },
-            ),
-          ),
-          const Spacer(flex: 1),
-          Expanded(
-            flex: 2,
-            child: TextWithTextFieldWidget(
-              parameters: PriceTextFieldParameters(),
-              text: TitleStrings.price,
-              value: productPrice,
-              onChange: (value) {
-                productPrice = value;
-                createNewProduct();
-              },
-            ),
-          ),
-          const Spacer(flex: 1),
-          IconButtonWidget(
-            onPress: (){
-              BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveProductEvent(sectionIndex: sectionIndex, productIndex: productIndex));
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          flex: 4,
+          child: TextWithTextFieldWidget(
+            parameters: NormalTextFieldParameters(),
+            text: TitleStrings.name,
+            value: productName,
+            onChange: (value) {
+              productName = value;
+              createNewProduct();
             },
-            icon: Icons.delete_forever
-          )
-        ],
-      ),
+          ),
+        ),
+        const Spacer(flex: 1),
+        Expanded(
+          flex: 2,
+          child: TextWithTextFieldWidget(
+            parameters: PriceTextFieldParameters(),
+            text: TitleStrings.price,
+            value: productPrice,
+            onChange: (value) {
+              productPrice = value;
+              createNewProduct();
+            },
+          ),
+        ),
+        const Spacer(flex: 1),
+        IconButtonWidget(
+          onPress: (){
+            BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveProductEvent(sectionIndex: sectionIndex, productIndex: productIndex));
+          },
+          icon: Icons.delete_forever
+        )
+      ],
     );
   }
 }

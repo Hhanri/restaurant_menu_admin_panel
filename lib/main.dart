@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/config/firebase_config.dart';
 import 'package:restaurant_menu_back_panel/widgets/page_widgets/config_page_widget.dart';
-import 'package:restaurant_menu_back_panel/widgets/page_widgets/menu_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

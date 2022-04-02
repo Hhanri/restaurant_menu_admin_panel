@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurant_menu_back_panel/resources/app_constants.dart';
@@ -15,7 +13,6 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
       emit(ConfigLoadingState());
       final Map<String,dynamic> data = await FirebaseServices().loadConfigFromFirebase();
       config = data[AppConstants.config];
-      print(config);
       emit(ConfigLoadedState(config: config));
     });
 
@@ -27,7 +24,6 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
       config[AppConstants.design][AppConstants.padding] = event.padding;
       config[AppConstants.design][AppConstants.circularRadius] = event.circularRadius;
       config[AppConstants.design][AppConstants.singleRadius] = event.circularRadius;
-      print("awaiting to upload to firebase");
       await FirebaseServices().loadConfigToFirebase(config);
       add(LoadConfigFromFirebaseEvent());
     });

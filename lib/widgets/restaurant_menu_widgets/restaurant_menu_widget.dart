@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/title_widget.dart';
 
 class RestaurantMenuWidget extends StatelessWidget {
   final List<SectionModel> sections;
@@ -19,7 +20,9 @@ class RestaurantMenuWidget extends StatelessWidget {
       child: Form(
         key: _formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const TitleWidget(text: "MENU"),
             ...List.generate(
               _sections.length,
               (index) {

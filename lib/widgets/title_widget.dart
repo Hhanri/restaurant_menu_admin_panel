@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 
 class TitleWidget extends StatelessWidget {
   final String text;
@@ -9,15 +10,11 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Align(
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 24
-          ),
+    return PaddingWidget(
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 24
         ),
       ),
     );

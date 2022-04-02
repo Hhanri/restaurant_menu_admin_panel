@@ -19,8 +19,12 @@ class TextWithTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        TextWidget(text: text),
         Expanded(
+          flex: 1,
+          child: TextWidget(text: text)
+        ),
+        Expanded(
+          flex: 6,
           child: TextFieldWidget(
             parameters: parameters,
             onChange: (value) {

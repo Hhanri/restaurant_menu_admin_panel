@@ -19,7 +19,23 @@ class FirebaseServices {
   Future<void> loadMenuToFirebase(List<SectionModel> sections) async {
     //_firebaseFirestore.settings = const Settings(persistenceEnabled: false);
     final Map<String, dynamic> map = {AppConstants.restaurantMenu : SectionModel.listToJson(sections)};
-    _firebaseFirestore.collection(AppConstants.restaurantMenu).doc(AppConstants.restaurantMenu).set(map);
+    _firebaseFirestore
+        .collection(AppConstants.restaurantMenu)
+        .doc(AppConstants.restaurantMenu)
+        .set(map);
+  }
+
+  Future<Map<String, dynamic>> loadConfigFromFirebase() async{
+    final DocumentSnapshot<Map<String, dynamic>> response = await _firebaseFirestore.collection(AppConstants.config).doc(AppConstants.config).snapshots().first;
+    final Map<String, dynamic> data = response.data()!;
+    return data;
+  }
+
+  Future<void> loadConfigToFirebase(Map<String, dynamic> config) async {
+    await _firebaseFirestore
+        .collection(AppConstants.config)
+        .doc(AppConstants.config)
+        .set({AppConstants.config : config});
   }
 /*
   void loadMenuToFirebase() async {

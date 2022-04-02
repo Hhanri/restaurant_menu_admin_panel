@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
+import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/widgets/icon_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
@@ -36,7 +37,7 @@ class ProductEditorWidget extends StatelessWidget {
             flex: 4,
             child: TextWithTextFieldWidget(
               parameters: NormalTextFieldParameters(),
-              text: "name",
+              text: TitleStrings.name,
               value: productName,
               onChange: (value) {
                 productName = value;
@@ -49,7 +50,7 @@ class ProductEditorWidget extends StatelessWidget {
             flex: 2,
             child: TextWithTextFieldWidget(
               parameters: PriceTextFieldParameters(),
-              text: "price",
+              text: TitleStrings.price,
               value: productPrice,
               onChange: (value) {
                 productPrice = value;

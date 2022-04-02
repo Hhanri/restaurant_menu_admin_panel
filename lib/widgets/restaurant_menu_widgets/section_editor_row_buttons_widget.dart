@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 
 class SectionEditorRowButtonsWidget extends StatelessWidget {
@@ -17,12 +18,12 @@ class SectionEditorRowButtonsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ElevatedIconButtonWidget(
-          text: "ADD PRODUCT",
+          text: TitleStrings.addProcut,
           onTap: onAddProduct,
           icon: Icons.add,
         ),
         ElevatedIconButtonWidget(
-          text: "DELETE SECTION",
+          text: TitleStrings.removeSection,
           onTap: onDeleteSection,
           icon: Icons.delete
         )

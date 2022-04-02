@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
+import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/services/firebase_service.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/cover_widget.dart';
@@ -28,7 +29,7 @@ class SectionHeaderEditorWidget extends StatelessWidget {
             flex: 5,
             child: TextWithTextFieldWidget(
               parameters: NormalTextFieldParameters(),
-              text: "Section Title",
+              text: TitleStrings.sectionTitle,
               value: section.sectionName,
               onChange: (value) {
                 onNameChange(value);

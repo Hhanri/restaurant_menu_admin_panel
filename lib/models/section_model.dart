@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:restaurant_menu_back_panel/models/product_model.dart' show ProductModel;
+import 'package:restaurant_menu_back_panel/resources/app_constants.dart';
 
 class SectionModel extends Equatable{
   final String sectionName;
@@ -22,17 +23,17 @@ class SectionModel extends Equatable{
 
   static Future<SectionModel> fromJson({required Map<String, dynamic> data, required bool fromFirebase}) async {
     return SectionModel(
-      sectionName: data["sectionName"],
-      products: List<ProductModel>.from(data["products"].map((jsonProduct) => ProductModel.fromJson(jsonProduct))),
-      cover: data["cover"]
+      sectionName: data[AppConstants.sectionName],
+      products: List<ProductModel>.from(data[AppConstants.products].map((jsonProduct) => ProductModel.fromJson(jsonProduct))),
+      cover: data[AppConstants.cover]
     );
   }
 
   static Map<String, dynamic> toJson(SectionModel model) {
     return {
-      "sectionName" : model.sectionName,
-      "products" : List<Map<String, dynamic>>.from(model.products.map((product) => ProductModel.toJson(product))),
-      "cover" : model.cover
+      AppConstants.sectionName : model.sectionName,
+      AppConstants.products : List<Map<String, dynamic>>.from(model.products.map((product) => ProductModel.toJson(product))),
+      AppConstants.cover : model.cover
     };
   }
 
@@ -49,7 +50,7 @@ class SectionModel extends Equatable{
   }
 
   static SectionModel defaultSectionModel = SectionModel(
-    sectionName: "sectionName",
+    sectionName: AppConstants.sectionName,
     products: [],
     cover: "assets/images/white-thumbnail.jpg"
   );

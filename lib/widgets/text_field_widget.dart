@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/utils/extensions.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -32,7 +33,7 @@ class TextFieldWidget extends StatelessWidget {
           String? res;
           res = parameters.validator(value);
           if (value == null || value.isEmpty) {
-            res = "Empty field";
+            res = ErrorStrings.emptyField;
           }
           return res;
         },
@@ -67,7 +68,7 @@ class PriceTextFieldParameters extends TextFieldParameters{
   PriceTextFieldParameters() : super(
     validator: (String? value) {
       if (!value!.isPrice()) {
-        return "Only digits";
+        return ErrorStrings.onlyDigits;
       }
     },
     formatters: [
@@ -80,7 +81,7 @@ class HexTextFieldParameters extends TextFieldParameters{
   HexTextFieldParameters() : super(
     validator: (String? value) {
       if (!value!.isARGB()) {
-        return "Must be ARGB format";
+        return ErrorStrings.mustBeARGBFormat;
       }
     },
     formatters: [
@@ -94,7 +95,7 @@ class IntTextFieldParameters extends TextFieldParameters {
   IntTextFieldParameters() : super(
     validator: (String? value) {
       if (!value!.isInt()) {
-        return "Must be an integer";
+        return ErrorStrings.mustBeInt;
       }
     },
     formatters: [
@@ -107,7 +108,7 @@ class DoubleTextFieldParameters extends TextFieldParameters {
   DoubleTextFieldParameters() : super(
     validator: (String? value) {
       if (!value!.isDouble()) {
-        return "Must be a double (ending at least 1 decimal)";
+        return ErrorStrings.mustBeDouble;
       }
     },
     formatters: [

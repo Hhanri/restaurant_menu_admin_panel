@@ -7,8 +7,15 @@ class TitleStrings {
   static const String name = "Name";
   static const String price = "Price";
   static const String sectionTitle = "Section Title";
+  static const String general = "General";
+  static const String theme = "Theme";
+  static const String design = "Design";
 }
 
-class ErrorString {
-
+class ErrorStrings {
+  static const String emptyField = "Empty field";
+  static const String onlyDigits = "Only digits";
+  static const String mustBeARGBFormat = "Must be ARGB format";
+  static const String mustBeInt = "Must be an integer";
+  static const String mustBeDouble = "Must be a double (ending at least 1 decimal)";
 }

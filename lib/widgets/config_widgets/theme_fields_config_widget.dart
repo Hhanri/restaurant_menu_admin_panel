@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_menu_back_panel/resources/app_constants.dart';
+import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/widgets/config_widgets/config_part_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/divider_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
@@ -21,7 +22,7 @@ class ThemeFieldsConfigWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConfigPartWidget(
-      title: 'Theme',
+      title: TitleStrings.theme,
       fields: [
         TextWithTextFieldWidget(
           text: AppConstants.mainColor,

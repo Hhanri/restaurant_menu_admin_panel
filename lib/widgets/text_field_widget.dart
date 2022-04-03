@@ -58,7 +58,7 @@ class NormalTextFieldParameters extends TextFieldParameters{
       return null;
     },
     formatters: [
-      FilteringTextInputFormatter.deny(RegExp(r'[\\]'))
+      FilteringTextInputFormatter.deny(RegExpFormatters.backSlashRegExp)
     ]
   );
 }
@@ -71,7 +71,7 @@ class PriceTextFieldParameters extends TextFieldParameters{
       }
     },
     formatters: [
-      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
+      FilteringTextInputFormatter.allow(RegExpFormatters.priceRegExp),
     ]
   );
 }
@@ -84,8 +84,34 @@ class HexTextFieldParameters extends TextFieldParameters{
       }
     },
     formatters: [
-      FilteringTextInputFormatter.allow(RegExp(r'[A-F 0-9]')),
+      FilteringTextInputFormatter.allow(RegExpFormatters.hexRegExp),
       LengthLimitingTextInputFormatter(8)
+    ]
+  );
+}
+
+class IntTextFieldParameters extends TextFieldParameters {
+  IntTextFieldParameters() : super(
+    validator: (String? value) {
+      if (!value!.isInt()) {
+        return "Must be an integer";
+      }
+    },
+    formatters: [
+      FilteringTextInputFormatter.digitsOnly,
+    ]
+  );
+}
+
+class DoubleTextFieldParameters extends TextFieldParameters {
+  DoubleTextFieldParameters() : super(
+    validator: (String? value) {
+      if (!value!.isDouble()) {
+        return "Must be a double (ending at least 1 decimal)";
+      }
+    },
+    formatters: [
+      FilteringTextInputFormatter.allow(RegExpFormatters.doubleRegExp),
     ]
   );
 }

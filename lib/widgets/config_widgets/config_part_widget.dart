@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_menu_back_panel/widgets/divider_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/title_widget.dart';
 
 class ConfigPartWidget extends StatelessWidget {
   final String title;
-  final List<TextWithTextFieldWidget> fields;
+  final List<Widget> fields;
   const ConfigPartWidget({
     Key? key,
     required this.title,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_menu_back_panel/blocs/config_bloc/config_bloc.dart';
 import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/utils/extensions.dart';
+import 'package:restaurant_menu_back_panel/widgets/config_widgets/design_fields_config_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/config_widgets/general_fields_config_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/config_widgets/theme_fields_config_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
@@ -68,6 +69,20 @@ class ConfigWidget extends StatelessWidget {
               fontColorOnChange: (String value) {
                 _fontColor = value;
               }
+            ),
+            DesignFieldsConfigWidget(
+              designMainColorValue: _designMainColor,
+              designMainColorOnChange: (String value) {
+                _designMainColor = value;
+              },
+              paddingValue: _padding,
+              paddingOnChange: (String value) {
+                _padding = double.parse(value);
+              },
+              circularRadiusValue: _circularRadius,
+              circularRadiusOnChange: (String value) {
+                _circularRadius = int.parse(value);
+              },
             ),
             ElevatedIconButtonWidget(
               icon: Icons.upload,

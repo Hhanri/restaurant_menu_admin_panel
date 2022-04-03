@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/models/section_model.dart';
 import 'package:restaurant_menu_back_panel/resources/strings.dart';
+import 'package:restaurant_menu_back_panel/widgets/divider_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/title_widget.dart';
@@ -36,7 +37,7 @@ class RestaurantMenuWidget extends StatelessWidget {
                       section: _sections[index],
                       reloadFromFirebase: onUpdate,
                     ),
-                    buildDivider()
+                    const DividerWidget()
                   ],
                 );
               }
@@ -60,13 +61,6 @@ class RestaurantMenuWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildDivider() {
-    return const Padding(
-      padding:EdgeInsets.all(8.0),
-      child: Divider(),
     );
   }
 }

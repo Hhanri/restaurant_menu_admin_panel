@@ -4,7 +4,6 @@ import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant
 import 'package:restaurant_menu_back_panel/models/product_model.dart';
 import 'package:restaurant_menu_back_panel/resources/strings.dart';
 import 'package:restaurant_menu_back_panel/widgets/icon_button_widget.dart';
-import 'package:restaurant_menu_back_panel/widgets/padding_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_field_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/text_with_text_field_widget.dart';
 

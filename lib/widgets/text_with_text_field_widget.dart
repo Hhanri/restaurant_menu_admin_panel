@@ -25,7 +25,6 @@ class TextWithTextFieldWidget extends StatelessWidget {
             child: TextWidget(text: text)
           ),
           Expanded(
-            flex: 6,
             child: TextFieldWidget(
               parameters: parameters,
               onChange: (value) {

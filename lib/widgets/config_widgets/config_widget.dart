@@ -7,6 +7,7 @@ import 'package:restaurant_menu_back_panel/widgets/config_widgets/design_fields_
 import 'package:restaurant_menu_back_panel/widgets/config_widgets/general_fields_config_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/config_widgets/theme_fields_config_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/elevated_button_widget.dart';
+import 'package:restaurant_menu_back_panel/widgets/title_widget.dart';
 
 class ConfigWidget extends StatelessWidget {
   final String appTitle;
@@ -49,15 +50,17 @@ class ConfigWidget extends StatelessWidget {
     }
 
     return SingleChildScrollView(
+      controller: ScrollController(),
       child: Form(
         key: _formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const TitleWidget(text: TitleStrings.settings),
             GeneralFieldsConfigWidget(
               appTitleValue: _appTitle,
               appTitleOnChange: (String value) {
                 _appTitle = value;
-                print(_themeMainColor);
               }
             ),
             ThemeFieldsConfigWidget(

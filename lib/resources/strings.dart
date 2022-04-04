@@ -1,5 +1,6 @@
 class TitleStrings {
   static const String menu = "MENU";
+  static const String settings = "SETTINGS";
   static const String update = "UPDATE";
   static const String addSection = "ADD SECTION";
   static const String removeSection = "REMOVE SECTION";

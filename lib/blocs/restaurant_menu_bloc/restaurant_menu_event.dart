@@ -1,12 +1,17 @@
 part of 'restaurant_menu_bloc.dart';
 
-abstract class RestaurantMenuEvent {
+abstract class RestaurantMenuEvent extends Equatable{
   const RestaurantMenuEvent();
 }
 
-class LoadFromFirebaseEvent extends RestaurantMenuEvent {}
+class LoadFromFirebaseEvent extends RestaurantMenuEvent {
+  @override
+  List<Object?> get props => throw [];
+}
 
 class LoadToFirebaseEvent extends RestaurantMenuEvent {
+  @override
+  List<Object?> get props => throw [];
 }
 
 class EditProductEvent extends RestaurantMenuEvent {
@@ -14,7 +19,7 @@ class EditProductEvent extends RestaurantMenuEvent {
   final int sectionIndex;
   final int productIndex;
 
-  EditProductEvent({
+  const EditProductEvent({
     required this.newProduct,
     required this.sectionIndex,
     required this.productIndex
@@ -27,7 +32,7 @@ class EditProductEvent extends RestaurantMenuEvent {
 class AddProductEvent extends RestaurantMenuEvent {
   final int sectionIndex;
 
-  AddProductEvent({required this.sectionIndex});
+  const AddProductEvent({required this.sectionIndex});
 
   @override
   List<Object> get props => [sectionIndex];
@@ -37,20 +42,20 @@ class RemoveProductEvent extends RestaurantMenuEvent {
   final int sectionIndex;
   final int productIndex;
 
-  RemoveProductEvent({
+  const RemoveProductEvent({
     required this.sectionIndex,
     required this.productIndex
   });
 
   @override
-  List<Object> get props => [sectionIndex];
+  List<Object> get props => [sectionIndex, productIndex];
 }
 
 class EditSectionName extends RestaurantMenuEvent {
   final String newName;
   final int sectionIndex;
 
-  EditSectionName({
+  const EditSectionName({
     required this.newName,
     required this.sectionIndex
   });
@@ -61,11 +66,13 @@ class EditSectionName extends RestaurantMenuEvent {
 class RemoveSectionEvent extends RestaurantMenuEvent {
   final int sectionIndex;
 
-  RemoveSectionEvent({required this.sectionIndex});
+  const RemoveSectionEvent({required this.sectionIndex});
 
   @override
   List<Object> get props => [sectionIndex];
 }
 
 class AddSectionEvent extends RestaurantMenuEvent {
+  @override
+  List<Object?> get props => throw [];
 }

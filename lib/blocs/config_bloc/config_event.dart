@@ -1,9 +1,13 @@
 part of 'config_bloc.dart';
 
 @immutable
-abstract class ConfigEvent {}
+abstract class ConfigEvent extends Equatable{
+}
 
-class LoadConfigFromFirebaseEvent extends ConfigEvent {}
+class LoadConfigFromFirebaseEvent extends ConfigEvent {
+  @override
+  List<Object?> get props => throw [];
+}
 
 class LoadConfigToFirebaseEvent extends ConfigEvent {
   final String appTitle;
@@ -22,4 +26,6 @@ class LoadConfigToFirebaseEvent extends ConfigEvent {
     required this.circularRadius
   });
 
+  @override
+  List<Object?> get props => throw [appTitle, themeMainColor, fontColor, designMainColor, padding, circularRadius];
 }

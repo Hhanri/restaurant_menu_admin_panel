@@ -21,6 +21,7 @@ class RestaurantMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<SectionModel> _sections = sections;
     return SingleChildScrollView(
+      controller: ScrollController(),
       child: Form(
         key: _formKey,
         child: Column(

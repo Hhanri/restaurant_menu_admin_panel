@@ -6,7 +6,8 @@ class ConnectivityService {
   final connectivityStream = StreamController<ConnectivityResult>();
 
   ConnectivityService() {
-    _connectivity.onConnectivityChanged.listen((event) {
+    _connectivity.onConnectivityChanged.listen((event) async {
+      print("listening");
       connectivityStream.add(event);
     });
   }

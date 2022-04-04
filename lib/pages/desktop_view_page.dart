@@ -9,6 +9,7 @@ class DesktopViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Expanded(
             flex: 1,

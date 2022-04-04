@@ -54,6 +54,7 @@ class ConfigWidget extends StatelessWidget {
       child: Form(
         key: _formKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const TitleWidget(text: TitleStrings.settings),

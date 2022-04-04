@@ -14,6 +14,7 @@ class TitleStrings {
 }
 
 class ErrorStrings {
+  static const String noInternet = "No Internet";
   static const String emptyField = "Empty field";
   static const String onlyDigits = "Only digits";
   static const String mustBeARGBFormat = "Must be ARGB format";

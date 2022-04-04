@@ -7,11 +7,19 @@ class DesktopViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        Expanded(child: ConfigPageWidget()),
-        Expanded(child: RestaurantMenuPageWidget())
-      ],
+    return Scaffold(
+      body: Row(
+        children: const [
+          Expanded(
+            flex: 1,
+            child: ConfigPageWidget()
+          ),
+          Expanded(
+            flex: 2,
+            child: RestaurantMenuPageWidget()
+          )
+        ],
+      ),
     );
   }
 }

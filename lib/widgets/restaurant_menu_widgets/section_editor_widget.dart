@@ -7,7 +7,7 @@ import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/produ
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_editor_row_buttons_widget.dart';
 import 'package:restaurant_menu_back_panel/widgets/restaurant_menu_widgets/section_header_editor_widget.dart';
 
-class SectionEditorWidget extends StatefulWidget {
+class SectionEditorWidget extends StatelessWidget {
   final SectionModel section;
   final int sectionIndex;
   final VoidCallback reloadFromFirebase;
@@ -18,11 +18,6 @@ class SectionEditorWidget extends StatefulWidget {
     required this.sectionIndex
   }) : super(key: key);
 
-  @override
-  State<SectionEditorWidget> createState() => _SectionEditorWidgetState();
-}
-
-class _SectionEditorWidgetState extends State<SectionEditorWidget> {
   @override
   Widget build(BuildContext context) {
 

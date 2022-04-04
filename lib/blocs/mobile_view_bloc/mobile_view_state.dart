@@ -1,6 +1,6 @@
 part of 'mobile_view_bloc.dart';
 
-abstract class MobileViewState extends Equatable {
+abstract class MobileViewState {
   const MobileViewState();
 }
 

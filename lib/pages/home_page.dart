@@ -1,7 +1,9 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/config_bloc/config_bloc.dart';
 import 'package:restaurant_menu_back_panel/blocs/connectivity_bloc/connectivity_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/mobile_view_bloc/mobile_view_bloc.dart';
+import 'package:restaurant_menu_back_panel/blocs/restaurant_menu_bloc/restaurant_menu_bloc.dart';
 import 'package:restaurant_menu_back_panel/pages/desktop_view_page.dart';
 import 'package:restaurant_menu_back_panel/pages/loading_screen.dart';
 import 'package:restaurant_menu_back_panel/pages/mobile_view_page.dart';
@@ -14,12 +16,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => Connectivity(),
-      child: BlocProvider(
-        create: (context) => ConnectivityBloc(RepositoryProvider.of<Connectivity>(context)),
+      create: (context) => ConnectivityService(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => ConnectivityBloc(RepositoryProvider.of<ConnectivityService>(context))),
+          BlocProvider(create: (context) => RestaurantMenuBloc(sections: [])..add(LoadFromFirebaseEvent())),
+          BlocProvider(create: (context) => MobileViewBloc()..add(DisplayRestaurantMenuPageEvent())),
+          BlocProvider(create: (context) => ConfigBloc(config: {})..add(LoadConfigFromFirebaseEvent()))
+        ],
         child: BlocBuilder<ConnectivityBloc, ConnectivityState>(
-          builder: (context, state) {
-            if (state is ConnectivityYesInternetState) {
+          builder: (context, connectivityState) {
+            if (connectivityState is ConnectivityYesInternetState) {
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 900) {
@@ -30,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 },
               );
             }
-            if (state is ConnectivityNoInternetState) {
+            if (connectivityState is ConnectivityNoInternetState) {
               return const NoInternetScreen();
             }
             return const LoadingScreen();

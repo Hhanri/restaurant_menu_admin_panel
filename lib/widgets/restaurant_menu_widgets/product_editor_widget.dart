@@ -32,7 +32,7 @@ class ProductEditorWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Expanded(
-          flex: 4,
+          flex: 10,
           child: TextWithTextFieldWidget(
             parameters: NormalTextFieldParameters(),
             text: TitleStrings.name,
@@ -45,7 +45,7 @@ class ProductEditorWidget extends StatelessWidget {
         ),
         const Spacer(flex: 1),
         Expanded(
-          flex: 2,
+          flex: 8,
           child: TextWithTextFieldWidget(
             parameters: PriceTextFieldParameters(),
             text: TitleStrings.price,

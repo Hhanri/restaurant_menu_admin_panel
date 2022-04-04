@@ -7,7 +7,6 @@ class ConnectivityService {
 
   ConnectivityService() {
     _connectivity.onConnectivityChanged.listen((event) async {
-      print("listening");
       connectivityStream.add(event);
     });
   }

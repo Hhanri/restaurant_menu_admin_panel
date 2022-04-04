@@ -9,27 +9,24 @@ class RestaurantMenuPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RestaurantMenuBloc(sections: [])..add(LoadFromFirebaseEvent()),
-      child: BlocBuilder<RestaurantMenuBloc, RestaurantMenuState>(
-        builder: (context, state) {
-          if (state is RestaurantMenuLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is RestaurantMenuLoadedState) {
-            List<SectionModel> _sections = BlocProvider.of<RestaurantMenuBloc>(context).sections;
-            return RestaurantMenuWidget(
-              onUpdate: () {
-                context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent());
-              },
-              sections: _sections,
-            );
-          }
-          return const Center(
-            child: Icon(Icons.error),
+    return BlocBuilder<RestaurantMenuBloc, RestaurantMenuState>(
+      builder: (context, restaurantMenuState) {
+        if (restaurantMenuState is RestaurantMenuLoadingState) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (restaurantMenuState is RestaurantMenuLoadedState) {
+          List<SectionModel> _sections = BlocProvider.of<RestaurantMenuBloc>(context).sections;
+          return RestaurantMenuWidget(
+            onUpdate: () {
+              context.read<RestaurantMenuBloc>().add(LoadToFirebaseEvent());
+            },
+            sections: _sections,
           );
-        },
-      )
+        }
+        return const Center(
+          child: Icon(Icons.error),
+        );
+      },
     );
   }
 }

@@ -1,7 +1,7 @@
 part of 'restaurant_menu_bloc.dart';
 
 @immutable
-abstract class RestaurantMenuState extends Equatable {
+abstract class RestaurantMenuState{
   const RestaurantMenuState();
 }
 

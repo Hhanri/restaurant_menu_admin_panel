@@ -5,7 +5,6 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('loading screen');
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator.adaptive(),

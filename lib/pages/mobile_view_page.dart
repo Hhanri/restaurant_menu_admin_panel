@@ -10,28 +10,25 @@ class MobileViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MobileViewBloc()..add(DisplayRestaurantMenuPageEvent()),
-      child: BlocBuilder<MobileViewBloc, MobileViewState>(
-        builder: (context, state) {
-          return Scaffold(
-            body: (state is RestaurantMenuPageState)
-                ? const RestaurantMenuPageWidget()
-                : const ConfigPageWidget(),
-            bottomNavigationBar: BottomNavigationBarWidget(
-              index: (state is RestaurantMenuPageState) ? 0 : 1,
-              onTap: (int itemIndex) {
-                if (itemIndex == 0) {
-                  BlocProvider.of<MobileViewBloc>(context).add(DisplayRestaurantMenuPageEvent());
-                }
-                if (itemIndex == 1) {
-                  BlocProvider.of<MobileViewBloc>(context).add(DisplayConfigPageEvent());
-                }
-              },
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<MobileViewBloc, MobileViewState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: (state is RestaurantMenuPageState)
+              ? const RestaurantMenuPageWidget()
+              : const ConfigPageWidget(),
+          bottomNavigationBar: BottomNavigationBarWidget(
+            index: (state is RestaurantMenuPageState) ? 0 : 1,
+            onTap: (int itemIndex) {
+              if (itemIndex == 0) {
+                BlocProvider.of<MobileViewBloc>(context).add(DisplayRestaurantMenuPageEvent());
+              }
+              if (itemIndex == 1) {
+                BlocProvider.of<MobileViewBloc>(context).add(DisplayConfigPageEvent());
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }

@@ -23,6 +23,7 @@ class SectionHeaderEditorWidget extends StatelessWidget {
 
     return PaddingWidget(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
@@ -36,7 +37,7 @@ class SectionHeaderEditorWidget extends StatelessWidget {
               },
             ),
           ),
-          const Spacer(flex: 2,),
+          const Spacer(flex: 1),
           Expanded(
             flex: 2,
             child: FutureBuilder(

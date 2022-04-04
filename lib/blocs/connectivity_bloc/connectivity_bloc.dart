@@ -7,23 +7,10 @@ part 'connectivity_event.dart';
 part 'connectivity_state.dart';
 
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
-  final Connectivity _connectivity;
-  ConnectivityBloc(this._connectivity) : super(ConnectivityLoadingState()) {
-    print("internet bloc");
-
-    _connectivity.checkConnectivity().then((result) {
-      print("checking internet");
-      if (result == ConnectivityResult.wifi || result == ConnectivityResult.mobile || result == ConnectivityResult.ethernet) {
-        print("yes internet");
-        add(ConnectivityYesInternetEvent());
-      } else {
-        add(ConnectivityNoInternetEvent());
-      }
-    });
-
-    _connectivity.onConnectivityChanged.listen((event) async {
-      print("listening");
-      if (event == ConnectivityResult.none) {
+  final ConnectivityService _connectivity;
+  ConnectivityBloc(this._connectivity) : super(ConnectivityYesInternetState()) {
+    _connectivity.connectivityStream.stream.listen((result) {
+      if (result == ConnectivityResult.none) {
         add(ConnectivityNoInternetEvent());
       } else {
         add(ConnectivityYesInternetEvent());

@@ -7,7 +7,6 @@ class NoInternetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("no internet screen");
     return Scaffold(
       body: Center(
         child: Column(

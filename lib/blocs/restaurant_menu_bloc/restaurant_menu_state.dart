@@ -10,11 +10,6 @@ class RestaurantMenuInitialState extends RestaurantMenuState {
   List<Object?> get props => throw [];
 }
 
-class RestaurantMenuNoInternetState extends RestaurantMenuState {
-  @override
-  List<Object?> get props => throw [];
-}
-
 class RestaurantMenuLoadingState extends RestaurantMenuState {
   @override
   List<Object?> get props => throw [];

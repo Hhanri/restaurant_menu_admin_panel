@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_menu_back_panel/pages/desktop_view_page.dart';
 import 'package:restaurant_menu_back_panel/pages/mobile_view_page.dart';
 
 class HomeScreen extends StatelessWidget {

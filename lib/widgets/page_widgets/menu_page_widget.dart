@@ -12,7 +12,7 @@ class RestaurantMenuPageWidget extends StatelessWidget {
     return BlocBuilder<RestaurantMenuBloc, RestaurantMenuState>(
       builder: (context, restaurantMenuState) {
         if (restaurantMenuState is RestaurantMenuLoadingState) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         }
         if (restaurantMenuState is RestaurantMenuLoadedState) {
           List<SectionModel> _sections = BlocProvider.of<RestaurantMenuBloc>(context).sections;

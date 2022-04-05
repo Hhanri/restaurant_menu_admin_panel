@@ -19,14 +19,16 @@ class HomeScreen extends StatelessWidget {
       create: (context) => ConnectivityService(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => ConnectivityBloc(RepositoryProvider.of<ConnectivityService>(context))),
-          BlocProvider(create: (context) => RestaurantMenuBloc(sections: [])..add(LoadFromFirebaseEvent())),
+          BlocProvider(create: (context) => ConnectivityBloc(connectivity: RepositoryProvider.of<ConnectivityService>(context))),
+          BlocProvider(create: (context) => RestaurantMenuBloc(sections: [])),
           BlocProvider(create: (context) => MobileViewBloc()..add(DisplayRestaurantMenuPageEvent())),
-          BlocProvider(create: (context) => ConfigBloc(config: {})..add(LoadConfigFromFirebaseEvent()))
+          BlocProvider(create: (context) => ConfigBloc(config: {}))
         ],
         child: BlocBuilder<ConnectivityBloc, ConnectivityState>(
           builder: (context, connectivityState) {
             if (connectivityState is ConnectivityYesInternetState) {
+              BlocProvider.of<ConfigBloc>(context).add(LoadConfigFromFirebaseEvent());
+              BlocProvider.of<RestaurantMenuBloc>(context).add(LoadFromFirebaseEvent());
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 900) {
@@ -36,11 +38,11 @@ class HomeScreen extends StatelessWidget {
                   }
                 },
               );
-            }
-            if (connectivityState is ConnectivityNoInternetState) {
+            } else if (connectivityState is ConnectivityNoInternetState) {
               return const NoInternetScreen();
+            } else {
+              return const LoadingScreen();
             }
-            return const LoadingScreen();
           },
         ),
       ),

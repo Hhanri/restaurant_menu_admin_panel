@@ -5,16 +5,10 @@ abstract class MobileViewState {
 }
 
 class MobileViewInitial extends MobileViewState {
-  @override
-  List<Object> get props => [];
 }
 
 class ConfigPageState extends MobileViewState {
-  @override
-  List<Object?> get props => throw [];
 }
 
 class RestaurantMenuPageState extends MobileViewState {
-  @override
-  List<Object?> get props => throw [];
 }

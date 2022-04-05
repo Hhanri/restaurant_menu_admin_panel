@@ -12,7 +12,7 @@ class ConfigPageWidget extends StatelessWidget {
     return BlocBuilder<ConfigBloc, ConfigState>(
       builder: (context, configState) {
         if (configState is ConfigLoadingState) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         }
         if (configState is ConfigLoadedState) {
           final String _appTitle = configState.config[AppConstants.appTitle];

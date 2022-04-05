@@ -5,11 +5,7 @@ abstract class ConnectivityState {
 }
 
 class ConnectivityNoInternetState extends ConnectivityState {
-  @override
-  List<Object> get props => [];
 }
 
 class ConnectivityYesInternetState extends ConnectivityState {
-  @override
-  List<Object> get props => [];
 }

@@ -25,28 +25,28 @@ class SectionEditorWidget extends StatelessWidget {
       child: Column(
         children: [
           SectionHeaderEditorWidget(
-            section: widget.section,
+            section: section,
             onNameChange: (String newSectionName) {
-              BlocProvider.of<RestaurantMenuBloc>(context).add(EditSectionName(newName: newSectionName, sectionIndex: widget.sectionIndex));
+              BlocProvider.of<RestaurantMenuBloc>(context).add(EditSectionName(newName: newSectionName, sectionIndex: sectionIndex));
             },
             onCoverChange: (String newCover) {
-              widget.reloadFromFirebase();
+              reloadFromFirebase();
             },
           ),
-          ...List.generate(widget.section.products.length, (index) {
+          ...List.generate(section.products.length, (index) {
             return ProductEditorWidget(
               key: UniqueKey(),
-              sectionIndex: widget.sectionIndex,
+              sectionIndex: sectionIndex,
               productIndex: index,
-              product: widget.section.products[index],
+              product: section.products[index],
             );
           }),
           SectionEditorRowButtonsWidget(
             onAddProduct: () {
-              BlocProvider.of<RestaurantMenuBloc>(context).add(AddProductEvent(sectionIndex: widget.sectionIndex));
+              BlocProvider.of<RestaurantMenuBloc>(context).add(AddProductEvent(sectionIndex: sectionIndex));
             },
             onDeleteSection: () {
-              BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveSectionEvent(sectionIndex: widget.sectionIndex));
+              BlocProvider.of<RestaurantMenuBloc>(context).add(RemoveSectionEvent(sectionIndex: sectionIndex));
             },
           )
         ],

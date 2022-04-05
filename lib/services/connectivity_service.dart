@@ -10,4 +10,6 @@ class ConnectivityService {
       connectivityStream.add(event);
     });
   }
+
+  Future<ConnectivityResult> get getResult async => await _connectivity.checkConnectivity();
 }

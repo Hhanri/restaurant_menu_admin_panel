@@ -5,20 +5,13 @@ abstract class ConfigState {
 }
 
 class ConfigInitial extends ConfigState {
-  @override
-  List<Object?> get props => throw [];
 }
 
 class ConfigLoadingState extends ConfigState {
-  @override
-  List<Object?> get props => throw [];
 }
 
 class ConfigLoadedState extends ConfigState {
   final Map<String, dynamic> config;
 
   ConfigLoadedState({required this.config});
-
-  @override
-  List<Object> get props => [config];
 }
